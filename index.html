@@ -64,7 +64,7 @@
             background: #ffffff;
         }
 
-        /* main scrollable area - adjusted to prevent scroll on transaction list */
+        /* main scrollable area */
         .dashboard-scroll {
             flex: 1;
             padding: 0 20px 20px 20px;
@@ -241,7 +241,7 @@
             margin-top: 2px;
         }
 
-        /* transaction feed - compact to fit 3 on screen */
+        /* transaction feed */
         .tx-feed {
             margin-top: 4px;
             display: flex;
@@ -413,15 +413,15 @@
 </div>
 
 <script>
-    // Transaction data with proper date objects for sorting
+    // Transaction data with correct 2026 dates and corrected sender name
     const transactions = [
         {
             id: 1,
             title: "ACH Transfer In",
-            description: "Wells Fargo Bank ·•••4090 • Sender: Felicity Acheapong",
-            dateString: "21 May 2025",
+            description: "Wells Fargo Bank ·•••4090 • Sender: Felicity Acheampong",
+            dateString: "21 May 2026",
             time: "09:14 AM",
-            dateObj: new Date(2025, 4, 21, 9, 14), // May 21, 2025, 9:14 AM
+            dateObj: new Date(2026, 4, 21, 9, 14), // May 21, 2026, 9:14 AM
             amount: 1470.00,
             iconType: "bank"
         },
@@ -429,9 +429,9 @@
             id: 2,
             title: "Remitly Deposit",
             description: "remittance reference: Maurice Campbell",
-            dateString: "10 June 2025",
+            dateString: "10 June 2026",
             time: "4:21 PM",
-            dateObj: new Date(2025, 5, 10, 16, 21), // June 10, 2025, 4:21 PM
+            dateObj: new Date(2026, 5, 10, 16, 21), // June 10, 2026, 4:21 PM
             amount: 1053.28,
             iconType: "globe"
         },
@@ -439,18 +439,18 @@
             id: 3,
             title: "Bank Deposit",
             description: "Absa Bank Ghana • Sender: Godfred Yeboah",
-            dateString: "11 June 2025",
+            dateString: "11 June 2026",
             time: "6:40 AM",
-            dateObj: new Date(2025, 5, 11, 6, 40), // June 11, 2025, 6:40 AM
+            dateObj: new Date(2026, 5, 11, 6, 40), // June 11, 2026, 6:40 AM
             amount: 780.00,
             iconType: "building"
         }
     ];
 
-    // Sort transactions by date (newest first)
+    // Sort transactions by date (newest first - June 11, then June 10, then May 21)
     const sortedTransactions = [...transactions].sort((a, b) => b.dateObj - a.dateObj);
 
-    // Calculate total balance
+    // Calculate total balance (1470 + 1053.28 + 780 = 3303.28)
     const totalBalance = transactions.reduce((sum, tx) => sum + tx.amount, 0);
 
     function formatUSD(value) {
@@ -488,7 +488,7 @@
         if (!container) return;
         container.innerHTML = '';
 
-        // Use sorted transactions (newest first)
+        // Display sorted transactions (newest first)
         sortedTransactions.forEach(tx => {
             const txDiv = document.createElement('div');
             txDiv.className = 'tx-item';
@@ -562,7 +562,7 @@
         if (allTxLink) {
             allTxLink.addEventListener('click', (e) => {
                 e.preventDefault();
-                alert("Full transaction history: showing all credits from May to June.");
+                alert("Full transaction history: showing all credits from May to June 2026.");
             });
         }
     }
